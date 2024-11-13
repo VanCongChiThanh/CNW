@@ -61,18 +61,23 @@ class Model_Student
 
     public function addStudent($id, $name, $age, $university)
     {
-        $sql = "SELECT * FROM sinhvien WHERE ID = '" . $id . "'";
-        $rs = mysqli_query($this->conn, $sql);
-        $num_rows = mysqli_num_rows($rs);
+        // Kien tra ton tai id
+        $stmt = $this->conn->prepare("SELECT 1 FROM sinhvien WHERE ID = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $stmt->store_result();
 
-        if ($num_rows == 0) {
-            $sql = "INSERT INTO sinhvien(id, name, age, university) VALUES ('$id', '$name', '$age', '$university')";
-            $rs = mysqli_query($this->conn, $sql);
-            return $rs ? 1 : 0;
+        if ($stmt->num_rows == 0) {
+            $stmt = $this->conn->prepare("INSERT INTO sinhvien (id, name, age, university) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssis", $id, $name, $age, $university);
+            $result = $stmt->execute();
+            return $result ? 1 : 0;
         } else {
+            // id ton tai
             return 0;
         }
     }
+
 
     public function deleteStudent($id)
     {
