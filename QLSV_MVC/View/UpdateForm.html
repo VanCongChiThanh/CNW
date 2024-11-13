@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="../Controller/C_Student.php" method="post">
+        <h3 align="center">Cập nhật thông tin sinh viên</h3>
+        <center>
+            <table>
+                <tr>
+                    <td>
+                        <label for="">ID</label>
+                    </td>
+                    <td>
+
+                        <?php
+                            echo '<input type="text" name="id" value="'.$student->id.'" readonly>';
+                        ?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="">Name</label>
+                    </td>
+                    <td>
+
+                        <?php
+                        echo ' <input type="text" name="name" value="'.$student->name.'">';
+                        ?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="">Age</label>
+                    </td>
+                    <td>
+
+                        <?php
+                        echo '<input type="text" name="age" value="'.$student->age.'">';
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">University</label>
+                    </td>
+                    <td>
+
+                        <?php
+                        echo '<input type="text" name="university" value="'.$student->university.'">';
+                        ?>
+                    </td>
+                </tr>
+
+            </table>
+
+            <input type="submit" value="Cập nhật" name="UpdateDetail">
+        </center>
+
+    </form>
+</body>
+
+</html>
