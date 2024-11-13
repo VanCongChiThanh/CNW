@@ -91,6 +91,7 @@ class Ctrl_Student
         if (isset($_POST['SearchFunc'])) { 
             $criteria =  $_POST['criteria'];
             $valueSearch = $_POST['valueSearch'];
+            
             if ($criteria != '' && $valueSearch != '') {
                 echo 'Kết quả tìm kiếm cho <code>' . $criteria . "='" . $valueSearch . "'</code> là:";
                 $students = $modelStudent->searchStudent($criteria, $valueSearch);

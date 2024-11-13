@@ -43,17 +43,21 @@ class Model_Student
 
     public function searchStudent($criteria, $searchFor)
     {
-        $all = $this->getStudents();
-        $found = array();
+        $sql = "SELECT * FROM sinhvien WHERE $criteria LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+        $searchFor = "%$searchFor%";  
+        $stmt->bind_param('s', $searchFor);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        foreach ($all as $student) {
-            if (property_exists($student, $criteria) && $student->$criteria == $searchFor) {
-                $found[] = $student;
-            }
+        $students = [];
+        while ($row = $result->fetch_assoc()) {
+            $students[] = new Entity_Student($row['id'], $row['name'], $row['age'], $row['university']);
         }
 
-        return $found;
+        return $students;
     }
+
 
     public function addStudent($id, $name, $age, $university)
     {
@@ -66,8 +70,6 @@ class Model_Student
             $rs = mysqli_query($this->conn, $sql);
             return $rs ? 1 : 0;
         } else {
-            echo "ID đã tồn tại, không thể thêm ID: " . $id;
-            echo '<h1> <a href="javascript:history.back()">Quay lại</a> </h1>';
             return 0;
         }
     }
