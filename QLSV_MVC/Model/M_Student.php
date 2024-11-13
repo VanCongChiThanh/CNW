@@ -86,6 +86,8 @@ class Model_Student
         return $rs;
     }
 
+
+
     public function updateStudentDetail($id, $name, $age, $university)
     {
         $sql = "UPDATE sinhvien SET name = '$name', age = '$age', university = '$university' WHERE id = $id";

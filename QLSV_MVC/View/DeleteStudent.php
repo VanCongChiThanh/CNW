@@ -1,11 +1,11 @@
 <html>
     <head>
-        <title> Xóa học sinh </title>
+        <title> Xóa sinh viên </title>
         <meta charset="utf-8">
     </head>
     <body>
         <div style="text-align: center; margin: auto; max-width: 800px;">
-            <h2> Danh sách học sinh <h2>
+            <h2> Danh sách sinh viên <h2>
             <table border = "2" width = 100%>
                 <tr>
                     <th>ID</th>
@@ -15,15 +15,15 @@
                     <th>Xóa</th>
                 </tr>
             <?php
-                for ($i = 0; array_key_exists($i, $students); $i++) {
+                foreach ($students as $student) {
                     echo "<tr>";
-                    echo "<td>" . $students[$i]->id . "</td>";
-                    echo "<td>" . $students[$i]->name . "</td>";
-                    echo "<td>" . $students[$i]->age . "</td>";
-                    echo "<td>" . $students[$i]->university . "</td>";
+                    echo "<td>" . $student->id . "</td>";
+                    echo "<td>" . $student->name . "</td>";
+                    echo "<td>" . $student->age . "</td>";
+                    echo "<td>" . $student->university . "</td>";
                     
                     echo "<td>";
-                    echo "<a href='?mod4=delete&stid=".$students[$i]->id."'> Xóa </a>";
+                    echo "<a href='?mod=delete&stid=".$student->id."'> Xóa </a>";
                     echo "</td>";
                     echo "</tr>";
                 }

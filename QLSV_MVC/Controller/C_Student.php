@@ -41,7 +41,7 @@ class Ctrl_Student
                         $stid = $_GET['stid'];
                         $ok = $modelStudent->deleteStudent($stid);
                         if ($ok) {
-                            echo "Sucess !";
+                            echo "Success !";
                             $students = $modelStudent->getStudents();
                             include_once("../View/StudentList.php");
                         } else {
